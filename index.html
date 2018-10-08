@@ -9,28 +9,32 @@
   <body>
     <nav class="green">
       <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo">Mate Discreta</a>
+        <a href="javascript:void(0)" class="brand-logo">Mate Discreta</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="sass.html">Cálculo MTC</a></li>
-          <li><a href="badges.html">Grafos</a></li>
+          <li><a href="javascript:void(0)">Cálculo MTC</a></li>
+          <li><a href="javascript:void(0)">Grafos</a></li>
         </ul>
       </div>
     </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="javascript:void(0)">Cálculo MTC</a></li>
+      <li><a href="javascript:void(0)">Grafos</a></li>
+    </ul>
       
     <div class="container">
       <h1>Algoritmo de Euclides</h1>
 
       <div class="row">
-        <div class="input-field col s4">
+        <div class="input-field col s12 m4">
           <input class="validate" type="number" id="txtNum1">
           <label for="txtNum1">Número 1</label>
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col s12 m4">
           <input class="validate" type="number" id="txtNum2">
           <label for="txtNum2">Número 2</label>
         </div>
-        <div class="input-field cold s4">
+        <div class="input-field cold s12 m4">
           <button class="btn green" type="button" onclick="calcMCD()">CALCULAR MCD</button>
         </div>
       </div>
@@ -43,6 +47,6 @@
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/alg_euclides.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>

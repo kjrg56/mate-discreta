@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $('.sidenav').sidenav();
+});
+
 function calcMCD() {
     var txtNum1 = $('#txtNum1').val();
     var txtNum2 = $('#txtNum2').val();
