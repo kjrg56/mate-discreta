@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
     <nav class="green">
@@ -12,41 +12,46 @@
         <a href="javascript:void(0)" class="brand-logo">Mate Discreta</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="javascript:void(0)">Cálculo MTC</a></li>
-          <li><a href="javascript:void(0)">Grafos</a></li>
+          <li><a href="#!mcd">MCD</a></li>
+          <li><a href="#!grafos">Grafos</a></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="javascript:void(0)">Cálculo MTC</a></li>
-      <li><a href="javascript:void(0)">Grafos</a></li>
+      <li><a href="#!mcd">MCD</a></li>
+      <li><a href="#!grafos">Grafos</a></li>
     </ul>
       
-    <div class="container">
+    <main class="container">
       <h1>Algoritmo de Euclides</h1>
 
       <div class="row">
-        <div class="input-field col s12 m4">
-          <input class="validate" type="number" id="txtNum1">
-          <label for="txtNum1">Número 1</label>
+        <div class="col s12 m6">
+          <br>
+          <div class="input-field col s12">
+            <input class="validate" type="number" id="txtNum1">
+            <label for="txtNum1">Número 1</label>
+          </div>
+          <div class="input-field col s12">
+            <input class="validate" type="number" id="txtNum2">
+            <label for="txtNum2">Número 2</label>
+          </div>
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light green" style="width: inherit"
+            type="button" onclick="calcMCD()">CALCULAR MCD</button>
+          </div>
         </div>
-        <div class="input-field col s12 m4">
-          <input class="validate" type="number" id="txtNum2">
-          <label for="txtNum2">Número 2</label>
-        </div>
-        <div class="input-field cold s12 m4">
-          <button class="btn green" type="button" onclick="calcMCD()">CALCULAR MCD</button>
-        </div>
+
+        <div class="col s12 m6" id="mcdContainer"></div>
       </div>
-
-      <div id="mcdContainer"></div>
-
-    </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.4/dist/sweetalert2.all.min.js"
+    crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
