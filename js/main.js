@@ -2,6 +2,83 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
 });
 
+// GRAFOS
+
+var countId = 0;
+var vertices = [];
+
+$( "#grafoCanvas" ).click(function(e) {
+    drawVertice(e);
+});
+
+function drawVertice(e) {
+    var canvas = document.getElementById("grafoCanvas");
+    var ctx = canvas.getContext("2d");
+    
+    var coords = getCoordinates(e, canvas);
+
+    ctx.beginPath();
+    ctx.arc(coords.x, coords.y, 5, 0, 2*Math.PI);
+    ctx.stroke();
+
+    var vertice = {
+        id: countId++,
+        x: coords.x,
+        y: coords.y
+    }
+
+    vertices.push(vertice);
+    console.log(vertices);
+}
+
+function getCoordinates(evt, canvas) {
+    var rect = canvas.getBoundingClientRect();
+
+    var scaleX = canvas.width / rect.width;    
+    var scaleY = canvas.height / rect.height;  
+
+    return {
+        x: (evt.clientX - rect.left) * scaleX, 
+        y: (evt.clientY - rect.top) * scaleY 
+      }
+}
+
+function drawGrafo() {
+    var canvas = document.getElementById("grafoCanvas");
+    var context = canvas.getContext('2d');
+
+    var v1 = vertices[0];
+    var v2 = vertices[1];
+    var v3 = vertices[2];
+    var v4 = vertices[3];
+
+    context.moveTo(v1.x, v1.y);
+    context.lineTo(v2.x, v2.y);
+    context.stroke();
+
+    context.moveTo(v2.x, v2.y);
+    context.lineTo(v3.x, v3.y);
+    context.stroke();
+
+    context.moveTo(v3.x, v3.y);
+    context.lineTo(v4.x, v4.y);
+    context.stroke();
+
+    context.moveTo(v4.x, v4.y);
+    context.lineTo(v1.x, v1.y);
+    context.stroke();
+
+}
+
+function clearCanvas() {
+    var canvas = document.getElementById("grafoCanvas");
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    vertices = [];
+}
+
+// MCD
+
 function calcMCD() {
     var txtNum1 = $('#txtNum1').val();
     var txtNum2 = $('#txtNum2').val();
