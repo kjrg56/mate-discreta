@@ -5,24 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection"/>
   </head>
   <body>
-    <nav class="green">
+    
+    <nav class="green darken-3">
       <div class="nav-wrapper container">
-        <a href="index.html" class="brand-logo">Mate Discreta</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="javascript:void(0)" onclick="showView('home.html')" class="brand-logo">Mate Discreta</a>
+        <a href="javascript:void(0)" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="mcd.html">MCD</a></li>
-          <li><a href="grafos.html">Grafos</a></li>
+          <li><a href="javascript:void(0)" onclick="showView('mcd.html')">MCD</a></li>
+          <li><a href="javascript:void(0)" onclick="showView('grafos.html')">Grafos</a></li>
         </ul>
       </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="mcd.html">MCD</a></li>
-      <li><a href="grafos.html">Grafos</a></li>
+      <li><a href="javascript:void(0)" onclick="showView('mcd.html')">MCD</a></li>
+      <li><a href="javascript:void(0)" onclick="showView('grafos.html')">Grafos</a></li>
     </ul>
-
-    <h1>Kevin Raymundo</h1>
+    
+    <main class="container view"></main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -31,5 +33,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.4/dist/sweetalert2.all.min.js"
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/main.js"></script>
+  
   </body>
 </html>

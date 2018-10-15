@@ -1,6 +1,13 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
+    showView('home.html');
 });
+
+function showView(viewUrl) {    
+    $.get(viewUrl, function( data ) {
+        $(".view").html(data);
+    });
+}
 
 // GRAFOS
 
@@ -80,6 +87,7 @@ function clearCanvas() {
 // MCD
 
 function calcMCD() {
+    clearMCDContainer();
     var txtNum1 = $('#txtNum1').val();
     var txtNum2 = $('#txtNum2').val();
 
@@ -91,20 +99,30 @@ function calcMCD() {
         var cociente = 0;
         var residuo = 0;
 
-        //$('#mcdContainer').html('<h3>MCD('+txtNum1+', '+txtNum2+')</h3>');
-        $('#mcdContainer').html('<br>');
-
+        $('#mcdContainer').removeClass('mcd-def-height');
+        
         do {
             cociente = Math.floor(dividendo / divisor);
             residuo = (dividendo % divisor);
 
-            $('#mcdContainer').append(dividendo + ' = ' + cociente + ' ('+divisor+')' + ' + ' + residuo + '<br>');
+            $('#mcdResult').append(dividendo + ' = ' + cociente + ' ('+divisor+')' + ' + ' + residuo + '<br>');
             
             dividendo = divisor;
             divisor = residuo;
         } while (residuo != 0); 
-         
-        $('#txtNum1').val('');
-        $('#txtNum2').val('');
+
+        $('#mcdTitle').html('MCD ('+txtNum1+', '+txtNum2+') = '+dividendo);
     }
+}
+
+function clearMCD() {
+    $('#txtNum1').val('');
+    $('#txtNum2').val('');
+    $('#mcdContainer').addClass('mcd-def-height');
+    clearMCDContainer();
+}
+
+function clearMCDContainer() {
+    $('#mcdResult').html('');
+    $('#mcdTitle').text('');
 }
