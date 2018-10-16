@@ -14,3 +14,8 @@
 .mcd-def-height {
     height: 300px;
 }
+
+#grafoCanvas {
+    width: -webkit-fill-available;
+    border:1px solid #000000;
+}

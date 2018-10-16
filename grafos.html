@@ -1,11 +1,39 @@
-<h1>Grafos</h1>
+<h2 style="color: #2e7d32">Grafos</h2>
+<p>Para añadir un <strong>vértice</strong>, dé click en cualquier posición dentro del área de trabajo </p>
 
 <div class="row">
-  <div class="col s12 m10">
-    <canvas id="grafoCanvas" style="border:1px solid #000000; width: inherit;"></canvas>
+  <div class="col s12 m8">
+    <canvas id="grafoCanvas"></canvas>
+    <button type="button" class="btn green" onclick="clearCanvas()">LIMPIAR AREA</button>
   </div>
-  <div class="col s12 m2"></div>
+  <div class="col s12 m4">
+    <h4 style="color: #2e7d32">Aristas</h4>
+    <div class="row">
+      <div class="input-field col s4">
+        <select id="deVertice">
+          <option value="" disabled selected>DE:</option>
+        </select>
+      </div>
+      <div class="input-field col s4">
+        <select id="aVertice">
+          <option value="" disabled selected>A:</option>
+        </select>
+      </div>
+      <div class="col s4">
+        <button type="button" onclick="drawArista()" style="margin-top: 20px;" class="btn brown">
+          <i class="material-icons">add</i>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<button type="button" class="btn green" onclick="drawGrafo()">GENERAR GRAFO</button>
-<button type="button" class="btn green" onclick="clearCanvas()">LIMPIAR AREA</button>
+<script>
+  $(document).ready(function() {
+    $('select').formSelect();
+  });
+
+  $('#grafoCanvas').click(function(e) {
+    drawVertice(e);
+  });
+</script>
