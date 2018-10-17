@@ -19,15 +19,21 @@ function drawVertice(e) {
     var canvas = document.getElementById("grafoCanvas");
     var coords = getCoordinates(e, canvas);
     var ctx = canvas.getContext("2d");
+    var ctx2 = canvas.getContext("2d");
 
     ctx.beginPath();
-    ctx.arc(coords.x, coords.y, 10, 0, 2*Math.PI);
+    ctx.arc(coords.x, coords.y, 15, 0, 2*Math.PI);
+    ctx.fillStyle = 'black';
+    ctx.fill();
     ctx.stroke();
-    ctx.font = "15px Arial";
-    ctx.fillText(getLabel(labelCount), coords.x-5, coords.y+5);
+
+    ctx2.fillStyle = "white";
+    ctx2.font = "20px Arial";
+    ctx2.fillText(getLabel(labelCount), coords.x-7, coords.y+7);
 
     var vertice = {
         name: getLabel(labelCount),
+        grado: 0,
         x: coords.x,
         y: coords.y
     }
@@ -80,6 +86,10 @@ function drawArista() {
         context.moveTo(deVertice.x, deVertice.y);
         context.lineTo(aVertice.x, aVertice.y);
         context.stroke();    
+
+        //se incrementa el grado de ambos vertices
+        deVertice.grado += 1;
+        aVertice.grado += 1;
     } else {
         swal('No existen vértices', 'Por favor, situé vertices en el área de trabajo.', 'warning');
     }

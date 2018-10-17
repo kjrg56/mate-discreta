@@ -16,6 +16,5 @@
 }
 
 #grafoCanvas {
-    width: -webkit-fill-available;
     border:1px solid #000000;
 }
