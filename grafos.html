@@ -4,23 +4,27 @@
 <div class="row">
   <div class="col s12 m8">
     <canvas id="grafoCanvas" width="600px" height="300px"></canvas>
-    <button type="button" class="btn green" onclick="clearCanvas()">LIMPIAR AREA</button>
+    <button type="button" class="btn waves-effect waves-light green darken-3" 
+      onclick="clearCanvas()">
+      <i class="material-icons left">replay</i>REINICIAR
+    </button>
   </div>
   <div class="col s12 m4">
     <h4 style="color: #2e7d32">Aristas</h4>
     <div class="row">
       <div class="input-field col s4">
         <select id="deVertice">
-          <option value="" disabled selected>DE:</option>
+          <option value="" disabled selected>De</option>
         </select>
       </div>
       <div class="input-field col s4">
         <select id="aVertice">
-          <option value="" disabled selected>A:</option>
+          <option value="" disabled selected>Hacia</option>
         </select>
       </div>
       <div class="col s4">
-        <button type="button" onclick="drawArista()" style="margin-top: 20px;" class="btn brown">
+        <button type="button" onclick="drawArista()" style="margin-top: 20px;" 
+          class="btn  waves-effect waves-light brown tooltipped" data-position="top" data-tooltip="Añadir Arista">
           <i class="material-icons">add</i>
         </button>
       </div>
@@ -28,12 +32,4 @@
   </div>
 </div>
 
-<script>
-  $(document).ready(function() {
-    $('select').formSelect();
-  });
-
-  $('#grafoCanvas').click(function(e) {
-    drawVertice(e);
-  });
-</script>
+<script src="js/grafos.js" type="text/javascript"></script>
