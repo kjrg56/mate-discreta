@@ -38,11 +38,17 @@ function drawVertice(e) {
         x: coords.x,
         y: coords.y
     }
-
+    
     var deSelect = document.getElementById('deVertice');
     var aSelect = document.getElementById('aVertice');
     deSelect.options.add(new Option(vertice.name, vertice.name));
     aSelect.options.add(new Option(vertice.name, vertice.name));
+
+    var deSelectDistancia = document.getElementById('deVerticeDistancia');
+    var aSelectDistancia = document.getElementById('aVerticeDistancia');
+    deSelectDistancia.options.add(new Option(vertice.name, vertice.name));
+    aSelectDistancia.options.add(new Option(vertice.name, vertice.name));
+
     $('select').formSelect();
 
     vertices.push(vertice);
@@ -69,8 +75,12 @@ function drawArista() {
     var deLabel = $('#deVertice').val();
     var aLabel = $('#aVertice').val();
 
-    if (deLabel == undefined || aLabel == undefined) {
-        swal('Vértices no seleccionados', 'Seleccione los vértices que desea conectar de las listas.', 'warning');
+    if (deLabel == undefined || deLabel == '' || aLabel == undefined || aLabel == '') {
+        swal('Vértices no seleccionados', 'Seleccione los vértices que desea conectar.', 'warning');
+        return false;
+    }
+
+    if (deLabel == aLabel) {
         return false;
     }
     
@@ -115,7 +125,7 @@ function showGrado(e) {
     var coords = getCoordinates(e, canvas);
     var ctx = canvas.getContext("2d");
     var isOnVertice = false;
-    var grado = 0;
+    var vertice = null;
 
     if (vertices.length > 0) {
         for (i = 0; i < vertices.length; i++) {
@@ -123,18 +133,22 @@ function showGrado(e) {
                  ((coords.y >= vertices[i].y-15) && (coords.y <= vertices[i].y+15)) ) {  
                                    
                 isOnVertice = true;
-                grado = vertices[i].grado;
+                vertice = vertices[i];
             }
         }
     }
 
     if (isOnVertice) {
-        $('#grafoCanvas').attr('title', 'Grado = ' + grado);
+        $('#grafoCanvas').attr('title', 'g('+vertice.name+') = ' + vertice.grado);
         $('#grafoCanvas').css('cursor', 'pointer');
     } else {
         $('#grafoCanvas').removeAttr('title');
         $('#grafoCanvas').css('cursor', 'default');
     }
+}
+
+function isConexo() {
+    $('#isConexoResult').text('DISCONEXO');
 }
 
 function clearCanvas() {
@@ -148,13 +162,21 @@ function clearCanvas() {
 
     var deSelect = document.getElementById('deVertice');
     var aSelect = document.getElementById('aVertice');
+    var deSelectD = document.getElementById('deVerticeDistancia');
+    var aSelectD = document.getElementById('aVerticeDistancia');
 
-    while (deSelect.hasChildNodes() && aSelect.hasChildNodes()) {   
+    while (deSelect.hasChildNodes() && aSelect.hasChildNodes() 
+        && deSelectD.hasChildNodes() && aSelectD.hasChildNodes()) {   
         deSelect.removeChild(deSelect.firstChild);
         aSelect.removeChild(aSelect.firstChild);
+        deSelectD.removeChild(deSelectD.firstChild);
+        aSelectD.removeChild(aSelectD.firstChild);
     }
 
     deSelect.options.add(new Option('De ', '', false, true));
     aSelect.options.add(new Option('Hacia', '', false, true));
+    deSelectD.options.add(new Option('De ', '', false, true));
+    aSelectD.options.add(new Option('Hacia', '', false, true));
     $('select').formSelect();
+    $('#isConexoResult').text('');
 }

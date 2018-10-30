@@ -16,5 +16,28 @@
 }
 
 #grafoCanvas {
-    border:1px solid #000000;
+    border:1px solid #66d684;
+    border-radius: 10px;
+    transition: box-shadow .2s;
+}
+
+#isConexoResult {
+    color: #5a2e19;
+    font-weight: bolder;
+    margin-block-start: 0.5em !important;
+}
+
+.grafo-box {
+    border: 1px solid #66d684;
+    border-radius: 10px;
+    padding-left: 20px;
+    transition: box-shadow .2s;
+}
+
+.grafo-box:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+#grafoCanvas:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
