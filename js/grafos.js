@@ -15,6 +15,7 @@ $(document).ready(function() {
 var labelCount = 65;
 var vertices = [];
 var aristas = [];
+var distancias = [];
 
 function drawVertice(e) {
     var canvas = document.getElementById("grafoCanvas");
@@ -159,6 +160,7 @@ function clearCanvas() {
     aristas = [];
     countId = 0;
     labelCount = 65;
+    distancias = [];
 
     var deSelect = document.getElementById('deVertice');
     var aSelect = document.getElementById('aVertice');
@@ -179,4 +181,62 @@ function clearCanvas() {
     aSelectD.options.add(new Option('Hacia', '', false, true));
     $('select').formSelect();
     $('#isConexoResult').text('');
+}
+
+function calcDistancia() {
+    distancias = [];
+    var deVertice = $('#deVerticeDistancia').val();
+    var aVertice = $('#aVerticeDistancia').val();
+
+    if (deVertice == undefined || deVertice == '' || aVertice == undefined || aVertice == '') {
+        swal('Vértices no seleccionados', 'Seleccione los vértices.', 'warning');
+        return false;
+    }
+
+    var arrTo = []; //caminos a verificar
+
+    for (var i = 0; i < aristas.length; i++) {
+        var aristaActual = aristas[i];
+        var from = aristaActual.substring(0, 1);
+        var to = aristaActual.substring(1, 2);
+
+        if (from == deVertice) {
+            arrTo.push(to);
+        }     
+    }
+
+    console.log(arrTo);
+
+    for (var i = 0; i < arrTo.length; i++) {
+        var inicioAristaCamino = deVertice+arrTo[i];
+        checkDistancia(inicioAristaCamino, deVertice, aVertice, 0, deVertice, arrTo, 0);
+    }
+
+}
+
+function addDistancia(camino, distancia) {
+    var d = {
+        camino: camino,
+        distancia: distancia
+    }
+    distancias.push(d);
+}
+
+function checkDistancia(aristaActual, deVertice, aVertice, distancia, camino, arrTo, nextToPos) {
+    var from = aristaActual.substring(0, 1);
+    var to = aristaActual.substring(1, 2);
+    camino = camino+to;
+    distancia++;
+
+    if (to == aVertice) {
+        addDistancia(camino, distancia);
+    } else {
+        var nextTo = arrTo[nextToPos];
+        if (to == nextTo) { 
+            nextToPos++;
+            nextTo = arrTo[nextToPos];
+        }
+        nextToPos++;
+        checkDistancia(to+nextTo, deVertice, aVertice, distancia, camino, arrTo, nextToPos);
+    }
 }
