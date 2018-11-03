@@ -148,10 +148,6 @@ function showGrado(e) {
     }
 }
 
-function isConexo() {
-    $('#isConexoResult').text('DISCONEXO');
-}
-
 function clearCanvas() {
     var canvas = document.getElementById("grafoCanvas");
     var context = canvas.getContext('2d');
@@ -180,7 +176,7 @@ function clearCanvas() {
     deSelectD.options.add(new Option('De ', '', false, true));
     aSelectD.options.add(new Option('Hacia', '', false, true));
     $('select').formSelect();
-    $('#isConexoResult').text('');
+    $('#distancia-result').text('');
 }
 
 function calcDistancia() {
@@ -211,6 +207,19 @@ function calcDistancia() {
         var inicioAristaCamino = deVertice+arrTo[i];
         checkDistancia(inicioAristaCamino, deVertice, aVertice, 0, deVertice, arrTo, 0);
     }
+
+    var menorD = {
+        distancia: 100,
+        camino: ""
+    }
+
+    for (var i = 0; i < distancias.length; i++) {
+        if (distancias[i].distancia < menorD.distancia) {
+            menorD = distancias[i];
+        }
+    }
+
+    $('#distancia-result').text('Menor distancia: ' + menorD.camino + ", valor: " + menorD.distancia);
 
 }
 
